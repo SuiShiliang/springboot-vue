@@ -52,6 +52,22 @@
     </dependencies>
 
     <build>
+        <resources>
+            <!--mapper.xml在resource目录下-->
+            <!--<resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>-->
+            <!--mapper.xml在dao目录下-->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -6,3 +6,6 @@ spring:
     url: jdbc:mysql://localhost:3306/ssm?serverTimezone=UTC&characterEncoding=utf-8
     username: root
     password: 123456
+mybatis:
+  mapper-locations: classpath*:com/ssl/springbootvue/dao/**/*.xml
+  type-aliases-package: com.ssl.springbootvue.model
