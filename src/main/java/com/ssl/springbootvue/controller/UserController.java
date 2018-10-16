@@ -46,7 +46,6 @@ public class UserController {
         restResult.setData(userList);
         restResult.setCode("SUCCESS");
         restResult.setMessage("查询成功");
-//        dskdhsjdh
         return restResult;
     }
 }
