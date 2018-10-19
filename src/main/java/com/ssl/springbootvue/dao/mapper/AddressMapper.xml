@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssl.springbootvue.dao.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.ssl.springbootvue.model.pojo.Address">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="country_id" jdbcType="VARCHAR" property="countryId" />
+    <result column="provence_id" jdbcType="VARCHAR" property="provenceId" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="street_id" jdbcType="VARCHAR" property="streetId" />
+    <result column="town_id" jdbcType="VARCHAR" property="townId" />
+    <result column="village_id" jdbcType="VARCHAR" property="villageId" />
+    <result column="another" jdbcType="VARCHAR" property="another" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, country_id, provence_id, city_id, street_id, town_id, village_id, another
+  </sql>
+  <select id="selectByExample" parameterType="com.ssl.springbootvue.model.pojo.AddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from address
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssl.springbootvue.model.pojo.AddressExample">
+    delete from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssl.springbootvue.model.pojo.Address">
+    insert into address (id, country_id, provence_id, 
+      city_id, street_id, town_id, 
+      village_id, another)
+    values (#{id,jdbcType=VARCHAR}, #{countryId,jdbcType=VARCHAR}, #{provenceId,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{streetId,jdbcType=VARCHAR}, #{townId,jdbcType=VARCHAR}, 
+      #{villageId,jdbcType=VARCHAR}, #{another,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssl.springbootvue.model.pojo.Address">
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="countryId != null">
+        country_id,
+      </if>
+      <if test="provenceId != null">
+        provence_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="streetId != null">
+        street_id,
+      </if>
+      <if test="townId != null">
+        town_id,
+      </if>
+      <if test="villageId != null">
+        village_id,
+      </if>
+      <if test="another != null">
+        another,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=VARCHAR},
+      </if>
+      <if test="provenceId != null">
+        #{provenceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="streetId != null">
+        #{streetId,jdbcType=VARCHAR},
+      </if>
+      <if test="townId != null">
+        #{townId,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null">
+        #{villageId,jdbcType=VARCHAR},
+      </if>
+      <if test="another != null">
+        #{another,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssl.springbootvue.model.pojo.AddressExample" resultType="java.lang.Long">
+    select count(*) from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update address
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null">
+        country_id = #{record.countryId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provenceId != null">
+        provence_id = #{record.provenceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null">
+        city_id = #{record.cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.streetId != null">
+        street_id = #{record.streetId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.townId != null">
+        town_id = #{record.townId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.villageId != null">
+        village_id = #{record.villageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.another != null">
+        another = #{record.another,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update address
+    set id = #{record.id,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=VARCHAR},
+      provence_id = #{record.provenceId,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=VARCHAR},
+      street_id = #{record.streetId,jdbcType=VARCHAR},
+      town_id = #{record.townId,jdbcType=VARCHAR},
+      village_id = #{record.villageId,jdbcType=VARCHAR},
+      another = #{record.another,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssl.springbootvue.model.pojo.Address">
+    update address
+    <set>
+      <if test="countryId != null">
+        country_id = #{countryId,jdbcType=VARCHAR},
+      </if>
+      <if test="provenceId != null">
+        provence_id = #{provenceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="streetId != null">
+        street_id = #{streetId,jdbcType=VARCHAR},
+      </if>
+      <if test="townId != null">
+        town_id = #{townId,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null">
+        village_id = #{villageId,jdbcType=VARCHAR},
+      </if>
+      <if test="another != null">
+        another = #{another,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssl.springbootvue.model.pojo.Address">
+    update address
+    set country_id = #{countryId,jdbcType=VARCHAR},
+      provence_id = #{provenceId,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      street_id = #{streetId,jdbcType=VARCHAR},
+      town_id = #{townId,jdbcType=VARCHAR},
+      village_id = #{villageId,jdbcType=VARCHAR},
+      another = #{another,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

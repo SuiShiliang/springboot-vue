@@ -48,4 +48,11 @@ public class UserController {
         restResult.setMessage("查询成功");
         return restResult;
     }
+
+    @PostMapping("/create")
+    public RestResult create(){
+        RestResult restResult = new RestResult();
+        userService.createTable();
+        return restResult;
+    }
 }
